@@ -76,7 +76,7 @@ getDataPromise(data)
   // take data and output 'Hello Joe Peters' for each object
   .then((data) => {
     data.forEach(object => {
-      console.log(`Hello Joe Peters`);
+      console.log(`Hello ${object.firstName} ${object.lastName}`);
     })
     return data;
   })
