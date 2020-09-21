@@ -45,19 +45,45 @@ myFirstPromise.then((num) => {
 
 // 2.
 // create a function called getDataPromise that returns a promise
-// inside the function create an error variable and set it to boolean false
-// create a conditional that handles the rejection if there is an error with a message 'Something went wrong'
-// Create a set timeout function that after 4 seconds returns the data (we are mimicking a 3rd party API call)
-
-// consume your promise
-// take the result and log the data
-// take data and output 'Hello Joe Peters' for each object
-// This should be 3 separate steps
-// Handle the error in case there is one
-// Test by setting your error variable to false then true
+let getDataPromise = (data) => {
+  return new Promise((resolve, reject) => {
+  // inside the function create an error variable and set it to boolean false
+    let err = false;
+  // create a conditional that handles the rejection if there is an error with a message 'Something went wrong'
+    if(err) {
+      reject(`Something went wrong.`);
+    }
+  // Create a set timeout function that after 4 seconds returns the data (we are mimicking a 3rd party API call)
+    setTimeout(() => {
+      resolve(data);
+    }, 4000)
+  })
+}
 
 let data = [
   { firstName: 'Joe', lastName: 'Peters' },
   { firstName: 'Doug', lastName: 'Lawson' },
   { firstName: 'Sandra', lastName: 'Mathers' },
 ];
+
+// consume your promise
+getDataPromise(data)
+// take the result and log the data
+  .then((data) => {
+    console.log(data);
+    return data;
+  })
+  // take data and output 'Hello Joe Peters' for each object
+  .then((data) => {
+    data.forEach(object => {
+      console.log(`Hello Joe Peters`);
+    })
+    return data;
+  })
+// This should be 3 separate steps
+// Handle the error in case there is one
+.catch((err) => {
+  console.log(`${err}: Something bad happened.`);
+})
+// Test by setting your error variable to false then true
+// Tested
